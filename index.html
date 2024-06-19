@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Marvel:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Marvel:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JoaozinhoStore</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./JS/script.js" defer></script> 
+</head>
+<body>
+    <header> 
+        <h1><strong>Marvel Store</strong></h1>
+        <div class="botoes">
+            <button class="nav" onclick="openModal('login')">Login</button>
+            <button class="nav" onclick="openModal('cadastro')">Cadastro</button>
+            <a href="./index2.html" onclick="return checkLogin()"><button class="nav">Produtos</button></a>
+        </div>
+        <div id="loggedInUserInfo" style="margin-right: 20px;"></div> 
+    </header>
+    <main>
+        <div class="text">
+            <p>
+                A Marvel é uma das editoras de quadrinhos mais icônicas e influentes do mundo, deixando uma marca indelével na cultura pop por décadas. Fundada em 1939 como Timely Publications e posteriormente se tornando Marvel Comics nos anos 1960, a empresa revolucionou a indústria de quadrinhos com personagens e histórias que capturaram a imaginação de gerações de fãs ao redor do globo.
+            </p>
+            <p>
+                O universo da Marvel é vasto e diversificado, povoado por uma miríade de super-heróis, vilões, anti-heróis e seres cósmicos. Entre os seus personagens mais icônicos estão o Homem-Aranha, os X-Men, o Quarteto Fantástico, o Capitão América, o Homem de Ferro, o Thor, o Hulk e os Vingadores, apenas para citar alguns. Cada personagem traz consigo uma história única e complexa, muitas vezes refletindo os dilemas e desafios da sociedade contemporânea.
+            </p>
+            <p>
+                A Marvel não se limita apenas aos quadrinhos. Seu universo se expandiu para outras mídias, incluindo filmes, programas de televisão, jogos de vídeo, brinquedos e uma infinidade de produtos licenciados. Os filmes do Universo Cinematográfico da Marvel (MCU) têm sido especialmente bem-sucedidos, quebrando recordes de bilheteria e conquistando críticas favoráveis ao adaptar algumas das histórias mais amadas dos quadrinhos para o cinema.
+            </p>
+            <p>
+                Além disso, a Marvel continua a inovar e a evoluir, introduzindo novos personagens e histórias enquanto honra o legado daqueles que vieram antes. Sua capacidade de se adaptar aos tempos e de permanecer relevante é um testemunho de sua importância duradoura na cultura popular.
+            </p>
+            <p> 
+                Em suma, a Marvel é mais do que uma simples editora de quadrinhos. É uma força cultural que inspira, entretém e une fãs de todas as idades ao redor do mundo, celebrando o heroísmo, a diversidade e a imaginação em todas as suas formas.
+            </p>
+        </div>
+        <div id="cadastroModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('cadastro')">&times;</span>
+                <h2>Cadastro</h2>
+                <form id="cadastroForm">
+                    <div class="frm">
+                        <label for="new_username">Novo Nome de Usuário:</label>
+                        <input type="text" id="new_username" name="new_username" required>
+                    </div>
+                    <div class="frm">
+                        <label for="new_email">Email:</label>
+                        <input type="email" id="new_email" name="new_email" required>
+                    </div>
+                    <div class="frm">
+                        <label for="new_cpf">CPF:</label>
+                        <input type="text" id="new_cpf" name="new_cpf" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="000.000.000-00" required>
+                        <small>Formato: 000.000.000-00</small>
+                    </div>
+                    <div class="frm"> 
+                        <label for="new_cep">CEP:</label>
+                        <input type="text" id="new_cep" name="new_cep" pattern="\d{5}-\d{3}" placeholder="00000-000" required>
+                        <small>Formato: 00000-000</small>
+                    </div>
+                    <div class="frm">
+                        <label for="new_password">Nova Senha:</label>
+                        <input type="password" id="new_password" name="new_password" required>
+                    </div>
+                    <div class="frm">
+                        <input type="submit" value="Cadastrar">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="loginModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('login')">&times;</span>
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <div class="frm">
+                        <label for="username">Nome de Usuário:</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="frm">
+                        <label for="password">Senha:</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <div class="frm">
+                        <input type="submit" value="Login">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer>
+         <h2>Informações do Site</h2>
+         <p>Marvel Comics &copy;2024</p>
+    </footer> 
+</body>
+</html>
