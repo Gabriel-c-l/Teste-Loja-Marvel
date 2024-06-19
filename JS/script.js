@@ -75,7 +75,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     var enteredPassword = document.getElementById('password').value;
     if (storedUser && enteredUsername === storedUser.username && enteredPassword === storedUser.password) {
         alert('Login bem-sucedido!');
-        window.location.href = 'http://127.0.0.1:5500/index2.html';
+        window.location.href = 'index2.html'; 
     } else {
         alert('Nome de usuário ou senha incorretos.');
     }
@@ -85,9 +85,14 @@ document.addEventListener('DOMContentLoaded', function() {
     var storedUser = JSON.parse(localStorage.getItem('user'));
     if (!storedUser) {
         alert('Você não está logado. Redirecionando para a página inicial.');
-        window.location.href = 'http://127.0.0.1:5500/index.html';
+        window.location.href = 'index.html';
+    } else {
+        displayLoggedInUser(); 
     }
 });
+
+
+
 
 function caculaCesta() {
     var total = 0;
