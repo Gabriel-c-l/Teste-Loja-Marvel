@@ -4,8 +4,10 @@ const cardsData = [
     { imgSrc: './img/img3.jpg', title: 'Hulk', price: '100R$' },
     { imgSrc: './img/img4.jpg', title: 'Homem de Ferro', price: '70R$' },
     { imgSrc: './img/img5.jpg', title: 'Capitão America', price: '65R$' },
-    { imgSrc: './img/img6.jpg', title: 'Captã Marvel', price: '43R$' }
+    { imgSrc: './img/img6.jpg', title: 'Capitã Marvel', price: '43R$' }
 ];
+
+let cartItems = [];
 
 function createCard(cardData) {
     const card = document.createElement('div');
@@ -22,9 +24,17 @@ function createCard(cardData) {
     const price = document.createElement('p');
     price.textContent = `Preço: ${cardData.price}`;
 
+    const addToCartButton = document.createElement('button');
+    addToCartButton.textContent = 'Adicionar ao Carrinho';
+    addToCartButton.classList.add('addToCartBtn'); 
+    addToCartButton.addEventListener('click', function() {
+        addToCart(cardData);
+    });
+
     card.appendChild(img);
     card.appendChild(title);
     card.appendChild(price);
+    card.appendChild(addToCartButton);
 
     return card;
 }
@@ -81,30 +91,93 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     }
 });
 
-function caculaCesta() {
-    var total = 0;
-    cardsData.forEach((cardData) => {
-        var priceString = cardData.price.replace('R$', '').trim(); 
-        var priceNumber = parseFloat(priceString); 
-        total += priceNumber;
-    });
-
-  
-    alert(`Total da cesta: R$ ${total.toFixed(2)}`); 
-}
-
 function displayLoggedInUser() {
     var storedUser = JSON.parse(localStorage.getItem('user'));
-    if (storedUser) {
+    var loggedInUserInfo = document.getElementById('loggedInUserInfo');
+    if (storedUser && loggedInUserInfo) {
         var userInfo = document.createElement('div');
         userInfo.textContent = 'Logado como ' + storedUser.username;
         userInfo.style.marginRight = '20px';
         userInfo.style.fontWeight = 'bold';
         userInfo.style.color = 'white';
-        document.getElementById('loggedInUserInfo').appendChild(userInfo);
+        loggedInUserInfo.appendChild(userInfo);
     }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
     displayLoggedInUser();
 });
+
+function openCartModal() {
+    const modal = document.getElementById('cartModal');
+    if (modal) {
+        modal.style.display = 'block';
+    }
+}
+
+function closeCartModal() {
+    const modal = document.getElementById('cartModal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
+const cartImage = document.querySelector('.carrinho');
+if (cartImage) {
+    cartImage.addEventListener('click', openCartModal);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const cartImage = document.querySelector('.carrinho');
+    if (cartImage) {
+        cartImage.addEventListener('click', openCartModal);
+    }
+});
+
+function addToCart(item) {
+    cartItems.push(item);
+
+    // Exibir alerta informando que o produto foi adicionado ao carrinho
+    alert(`${item.title} foi adicionado ao carrinho!`);
+
+    const cartList = document.getElementById('cartItems');
+    if (cartList) {
+        cartList.innerHTML = '';
+        cartItems.forEach(item => {
+            const li = document.createElement('li');
+
+            // Imagem reduzida do produto
+            const img = document.createElement('img');
+            img.src = item.imgSrc;
+            img.alt = item.title;
+            img.style.width = '50px'; // Tamanho reduzido da imagem
+            li.appendChild(img);
+
+            // Nome e preço do produto
+            const text = document.createTextNode(`${item.title} - ${item.price}`);
+            li.appendChild(text);
+
+            cartList.appendChild(li);
+        });
+    }
+
+    updateCartTotal();
+}
+
+function updateCartTotal() {
+    const cartTotal = document.getElementById('cartTotal');
+    if (cartTotal) {
+        let total = 0;
+        cartItems.forEach(item => {
+            let priceString = item.price.replace('R$', '').trim();
+            let priceNumber = parseFloat(priceString);
+            total += priceNumber;
+        });
+        cartTotal.textContent = `Total: R$ ${total.toFixed(2)}`;
+    }
+}
+
+const el = document.getElementById('overlayBtn');
+if (el) {
+  el.addEventListener('click', swapper, false);
+}
