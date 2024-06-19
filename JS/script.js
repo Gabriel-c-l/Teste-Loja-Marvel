@@ -81,19 +81,6 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     }
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    var storedUser = JSON.parse(localStorage.getItem('user'));
-    if (!storedUser) {
-        alert('Você não está logado. Redirecionando para a página inicial.');
-        window.location.href = 'index.html';
-    } else {
-        displayLoggedInUser(); 
-    }
-});
-
-
-
-
 function caculaCesta() {
     var total = 0;
     cardsData.forEach((cardData) => {
